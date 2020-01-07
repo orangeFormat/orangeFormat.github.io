@@ -84,3 +84,25 @@ tags:
     ```
 
     这个方案的循环没有嵌套。这个算法用空间换了时间。很多时候，都需要在时间和空间之间进行权衡
+
+3. python数据结构的性能
+   - 列表：追加，索引、pop()、索引赋值的大O效率是Q（1），pop(i)的大O效率是O(n)
+   - 字典：取值，赋值，包含，删除，复杂度是O（1）
+   - 比较列表和字典的包含操作
+    ```python
+    import timeit
+    import random
+
+    for i in range(10000, 1000001, 2000):
+        t = timeit.Timer("random.randrange(%d) in x" % i,"from __main__ import random , x" )
+
+        x = list(range(i))
+        lst_time = t.timeit(number=1000)
+        x = {j:None for j in range(i)}
+        d_time = t.timeit(number=1000)
+        print("{}   {}   {}".format(i, lst_time, d_time))
+    ```
+    字典一直更快，随着规模增加，字典的耗时没有现住址增加，而列表线性增长
+### 总结
+1. 算法分析是一种独立于是心啊的算法度量方法
+2. 大O记法使得算法可以根据随问题规模增长而起主导作用的部分进行分类
