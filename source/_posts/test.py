@@ -1,40 +1,24 @@
-class OrderedList:
-    def __init__(self):
-        self.head = None
-    
-    def search(self, item):
-        current = self.head
-        found = False
-        stop = False
-        while current != None and not found and not stop:
-            if current.getData() == item:
-                found = True
-            else:
-                if current.getData() > item:
-                    stop = True
-                else:
-                    current = current.getNext()
-        retrun found
+def dpMakeChange(coinValueList, change, minCoins, coinsUsed):
+    for cents in range(change + 1):
+        coinCount = cents
+        newCoin = 1
+        for j in [c for c in coinValueList if c <= cents]:
+            if minCoins[cents - j] + 1 < coinCount:
+                coinCount = minCoins[cents - j] + 1
+                newCoin = j
+            minCoins[cents] = coinCount
+            coinsUsed[cents] = newCoin  # 妙呀
+    return minCoins[change]
 
-    def add(self, item):
-        current = self.head
-        previous = None
-        stop = False
-        while current != None and not stop:
-            if current.getData() > item:
-                stop = True
-            else:
-                previous = current
-                current = current.getNext()
-            
-        temp = Node(item)
-        if previous = None:
-            temp.setNext(self.head)
-            self.head = temp
-        else:
-            temp.setNext(current)
-            previous.setNext(temp)
-        
-    
-    # 待续。。。。
+def printCoins(coinsUsed, change):
+    coin = change
+    while coin > 0:
+        thisCoin = coinsUsed[coin]
+        print(thisCoin)
+        coin = coin - thisCoin
 
+cl = [1, 5, 10,  25]
+coinsUsed = [0]*64
+coinCount = [0]*64
+dpMakeChange(cl, 63, coinCount, coinsUsed)
+printCoins(coinsUsed, 63)
