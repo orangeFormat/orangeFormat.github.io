@@ -1,5 +1,5 @@
 hexo g
-hexxo clean
+hexo clean
 hexo d
 备份代码：hexo b
 
