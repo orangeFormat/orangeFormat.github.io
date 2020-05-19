@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('http://127.0.0.1:4000').hostname,
+    root: '/',
+    scheme: 'Muse',
+    version: '7.6.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="一、导论 计算机科学的研究对象是问题、解决问题的过程，以及通过该过程得到的解决方案。  编程是指通过编程语言将算法编码以使其能被执行的过程。计算机科学的研究对象并不是编程，但是编程是计算机科学家所作工作的一个重要组成部分。  python的内建集合数据类型  列表是零个或多个指向python数据对象的引用的有序集合。列表是异构的，意味着其指向的数据对象不需要都是同一个类， 元组不可修改 集合（se">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python 数据结构与算法分析_开始之前">
+<meta property="og:url" content="http://127.0.0.1:4000/2020/01/05/python%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90_%E5%BC%80%E5%A7%8B%E4%B9%8B%E5%89%8D/index.html">
+<meta property="og:site_name" content="orange">
+<meta property="og:description" content="一、导论 计算机科学的研究对象是问题、解决问题的过程，以及通过该过程得到的解决方案。  编程是指通过编程语言将算法编码以使其能被执行的过程。计算机科学的研究对象并不是编程，但是编程是计算机科学家所作工作的一个重要组成部分。  python的内建集合数据类型  列表是零个或多个指向python数据对象的引用的有序集合。列表是异构的，意味着其指向的数据对象不需要都是同一个类， 元组不可修改 集合（se">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-01-05T07:53:56.000Z">
+<meta property="article:modified_time" content="2020-05-19T04:38:28.306Z">
+<meta property="article:author" content="orange">
+<meta property="article:tag" content="笔记">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://127.0.0.1:4000/2020/01/05/python%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90_%E5%BC%80%E5%A7%8B%E4%B9%8B%E5%89%8D/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>python 数据结构与算法分析_开始之前 | orange</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">orange</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://127.0.0.1:4000/2020/01/05/python%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90_%E5%BC%80%E5%A7%8B%E4%B9%8B%E5%89%8D/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="orange">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="orange">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          python 数据结构与算法分析_开始之前
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-01-05 15:53:56" itemprop="dateCreated datePublished" datetime="2020-01-05T15:53:56+08:00">2020-01-05</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-05-19 12:38:28" itemprop="dateModified" datetime="2020-05-19T12:38:28+08:00">2020-05-19</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" itemprop="url" rel="index">
+                    <span itemprop="name">数据结构</span>
+                  </a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E7%AE%97%E6%B3%95/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="一、导论"><a href="#一、导论" class="headerlink" title="一、导论"></a>一、导论</h2><ol>
+<li><p>计算机科学的研究对象是问题、解决问题的过程，以及通过该过程得到的解决方案。</p>
+</li>
+<li><p>编程是指通过编程语言将算法编码以使其能被执行的过程。计算机科学的研究对象并不是编程，但是编程是计算机科学家所作工作的一个重要组成部分。</p>
+</li>
+<li><p>python的内建集合数据类型</p>
+<ol>
+<li>列表是零个或多个指向python数据对象的引用的有序集合。列表是异构的，意味着其指向的数据对象不需要都是同一个类，</li>
+<li>元组不可修改</li>
+<li>集合（set)是由零个或多个不可修改的python数据对象组成的无序集合。不允许重复元素，由大括号包含，逗号分隔</li>
+<li>字典是无序结构，由相关的元素对构成，其中每对元素都由一个键和一个值组成。</li>
+</ol>
+</li>
+<li><p>python的异常处理</p>
+</li>
+<li><p>python的类</p>
+<ol>
+<li><p>定义新的类</p>
+  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">NameOfClass</span>:</span></span><br><span class="line">    <span class="comment"># 方法定义</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>所有类都应该首先提供构造方法。构造方法定义了数据对象的创建方式。python中的构造方法命名为<strong>init</strong></p>
+  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">NameOfClass</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, top, bottom)</span>:</span></span><br><span class="line"></span><br><span class="line">        self.num = top</span><br><span class="line">        self.den = bottom</span><br></pre></td></tr></table></figure>
+
+<p>  self是一个指向对象本身的特殊参数，必须是第一个形式参数</p>
+</li>
+<li><p>继承</p>
+<ol>
+<li><p>继承使一个类与另一个类相关联，python的子类可以从父类继承特征数据和行为，父类也称为超类。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 父类LogicGate</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">LogicGate</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, n)</span>:</span></span><br><span class="line">        self.label = n</span><br><span class="line">        self.output = <span class="literal">None</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">getLabel</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self.label</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">getOutput</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.output = self.performaGateLogic()</span><br><span class="line">        <span class="keyword">return</span> self.output</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 子类BinaryGate</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">binaryGate</span><span class="params">(LogicGate)</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, n)</span>:</span></span><br><span class="line">        super().__init__(n)</span><br><span class="line"></span><br><span class="line">        self.pinA = <span class="literal">None</span></span><br><span class="line">        self.pinB = <span class="literal">None</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">getPinA</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> int(input(<span class="string">"Enter Pin A input for Gate "</span> + \</span><br><span class="line">                    self.getLabel() + <span class="string">"--&gt;"</span>))</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">getPinB</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> int(input(<span class="string">"Enter Pin B input for Gate "</span> + \</span><br><span class="line">                    self.getLabel() + <span class="string">"--&gt;"</span>))</span><br></pre></td></tr></table></figure>
+
+<p>BinaryGate类增添的唯一行为就是取得两个输入值，UnaryGate类也有类似的实现，不过它只有一个输入</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 子类UnaryGate(self):</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">UnaryGate</span><span class="params">(logicGate)</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, n)</span>:</span></span><br><span class="line">        super().__init__(n)</span><br><span class="line"></span><br><span class="line">        self.pin = <span class="literal">None</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">getPin</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> int(input(<span class="string">"Enter Pin input for gate"</span> + self.getLabel() + <span class="string">"--&gt;"</span>))</span><br></pre></td></tr></table></figure>
+
+<p>connect类-并不在逻辑门的继承层次结构中，但是它会使用该结构，从而使每一个连接器的两端都有一个逻辑门，这被称为HAS-A关系。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Connector类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Connector</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, fgate, tgate)</span>:</span></span><br><span class="line">        self.fromgate = fromgate</span><br><span class="line">        self.togate = tgate</span><br><span class="line"></span><br><span class="line">        tgate.setNextPin(self).</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">getFrom</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self.fromgate</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">getTo</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self.togate</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">setNextPin</span><span class="params">(self, source)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> self.pinA == <span class="literal">None</span>:</span><br><span class="line">        self.pinA = Source</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">if</span> self.pinB == <span class="literal">None</span>:</span><br><span class="line">            self.pinB = source</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><ul>
+<li>计算机科学使研究如何解决问题的学科</li>
+<li>计算机科学利用抽象这一工具来表示过程和数据</li>
+<li>抽象数据类型通过隐藏数据的细节来使程序员能够管理问题的复杂度</li>
+<li>python易用，面向对象编程</li>
+<li>列表、元组 以及字符串是python的内建有序集合</li>
+<li>字典和集是无序集合</li>
+<li>类使程序员能实现抽象数据类型</li>
+<li>既可以重写标准方法，也可以构建新的方法</li>
+<li>类可以通过继承层次结构来组织</li>
+<li>类的构造方法总是调用其父类的构造方法，然后才处理自己的数据和行为</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E7%AC%94%E8%AE%B0/" rel="tag"># 笔记</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/01/01/%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84/" rel="prev" title="第二章 计算机网络体系结构">
+      <i class="fa fa-chevron-left"></i> 第二章 计算机网络体系结构
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/01/06/python%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90-%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90/" rel="next" title="python数据结构与算法分析_算法分析">
+      python数据结构与算法分析_算法分析 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、导论"><span class="nav-number">1.</span> <span class="nav-text">一、导论</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#小结"><span class="nav-number">1.1.</span> <span class="nav-text">小结</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">orange</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">21</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">orange</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.2.1
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.6.0
+  </div>
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
